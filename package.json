@@ -19,8 +19,18 @@
     "sass:dev": "./node_modules/.bin/node-sass --recursive --include-path ./app/public/stylesheets/sass --output-style expanded ./app/public/stylesheets/sass/app.scss ./app/public/stylesheets/css/app.css",
     "package:osx": "electron-packager ./ Soundnode --platform=darwin --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.ico",
     "package:linux": "electron-packager ./ Soundnode --platform=linux --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.icns",
+    "package:snap": "build -l snap --x64",
     "package:win32": "electron-packager ./ Soundnode --platform=win32 --out ./dist/Soundnode --electron-version 1.4.4 --overwrite --icon ./app/soundnode.icns",
-    "package:all": "npm run package:osx && npm run package:linux && npm run package:win32"
+    "package:all": "npm run package:osx && npm run package:linux && npm run package:snap && npm run package:win32"
+  },
+  "build": {
+    "snap": {
+      "plugs": [
+        "desktop-legacy",
+        "desktop",
+        "default"
+      ]
+    }
   },
   "author": "Michael Lancaster",
   "license": "GPL-3.0",
@@ -33,6 +43,7 @@
     "babel-register": "^6.23.0",
     "electron": "^1.6.11",
     "electron-packager": "^8.5.1",
+    "electron-builder": "^19.53.0",
     "eslint": "^4.0.0",
     "eslint-plugin-react": "^7.1.0",
     "install": "^0.10.1",
